@@ -1,1 +1,91 @@
-"Hello World" 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travel Details</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      text-align: center;
+    }
+    h1 {
+      color: #4CAF50;
+    }
+    .dropdown-container {
+      margin: 20px 0;
+    }
+    select {
+      padding: 10px;
+      font-size: 16px;
+      width: 300px;
+    }
+    table {
+      margin: 20px auto;
+      border-collapse: collapse;
+      width: 80%;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: center;
+    }
+    th {
+      background-color: #f4f4f4;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <h1>Travel Details</h1>
+  <div class="dropdown-container">
+    <select id="nameDropdown" onchange="showDetails()">
+      <option value="">Select a Name</option>
+      <option value="John Doe">John Doe</option>
+      <option value="Jane Smith">Jane Smith</option>
+      <option value="Alice Johnson">Alice Johnson</option>
+    </select>
+  </div>
+  <div id="detailsTable"></div>
+
+  <script>
+    // Travel details data
+    const travelDetails = {
+      "John Doe": { room: "101", flight: "AA1234", destination: "New York" },
+      "Jane Smith": { room: "202", flight: "DL5678", destination: "Los Angeles" },
+      "Alice Johnson": { room: "303", flight: "UA9101", destination: "Chicago" },
+    };
+
+    // Function to display details in a table
+    function showDetails() {
+      const selectedName = document.getElementById("nameDropdown").value;
+      const detailsTable = document.getElementById("detailsTable");
+
+      if (selectedName && travelDetails[selectedName]) {
+        const details = travelDetails[selectedName];
+        detailsTable.innerHTML = `
+          <table>
+            <thead>
+              <tr>
+                <th>Room Number</th>
+                <th>Flight Details</th>
+                <th>Destination</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>${details.room}</td>
+                <td>${details.flight}</td>
+                <td>${details.destination}</td>
+              </tr>
+            </tbody>
+          </table>
+        `;
+      } else {
+        detailsTable.innerHTML = '';
+      }
+    }
+  </script>
+</body>
+</html>
